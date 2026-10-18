@@ -92,12 +92,12 @@ jobs:
         with:
           release: R2024b
 
-      - name: Configure MATLAB License and Test Run
-        uses: matlab-actions/run-command@v2
-        with:
-          command: disp('MATLAB R2024b configured and licensed successfully via GitHub Actions.')
-        env:
-          MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
+      #- name: Configure MATLAB License and Test Run
+        #uses: matlab-actions/run-command@v2
+      #  with:
+    #      command: disp('MATLAB R2024b configured and licensed successfully via GitHub Actions.')
+       # env:
+ #         MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
 
       - name: Maintain Connection + Watch RDP User
         run: |
