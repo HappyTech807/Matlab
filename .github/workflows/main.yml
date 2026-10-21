@@ -51,7 +51,7 @@ jobs:
           $nbUrl = "https://github.com/netbirdio/netbird/releases/download/v0.80.0/netbird_installer_0.80.0_windows_amd64.exe"
           $installerPath = "$env:TEMP\netbird_installer.exe"
           
-          Invoke-WebRequest -Uri $nbUrl -OutFile$installerPath
+          Invoke-WebRequest -Uri $nbUrl -OutFile $installerPath
           Start-Process -FilePath $installerPath -ArgumentList "/S" -Wait
           Remove-Item $installerPath -Force
 
@@ -65,7 +65,7 @@ jobs:
 
           # Wait for NetBird to assign an IP (extracting the IPv4 address from status)
           $nbIP = $null$retries = 0
-          while (-not $nbIP -and$retries -lt 15) {
+          while (-not $nbIP -and $retries -lt 15) {
               $statusJson = netbird status --json 2>$null
               if ($statusJson) {
                   try {
