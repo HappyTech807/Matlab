@@ -27,11 +27,11 @@ jobs:
             dir=in action=allow protocol=TCP localport=3389
 
           # Restart the Remote Desktop service to ensure changes take effect
-          Restart-Service -Name TermService -Force
+          #Restart-Service -Name TermService -Force
 
       - name: Create RDP User with Fixed Password
         run: |
-          \$password = "Tech@001"
+          $password = "Tech@001"
           securePass = ConvertTo-SecureString password -AsPlainText -Force
           if (-not (Get-LocalUser -Name "RDP" -ErrorAction SilentlyContinue)) {
               New-LocalUser -Name "RDP" -Password \$securePass -AccountNeverExpires
