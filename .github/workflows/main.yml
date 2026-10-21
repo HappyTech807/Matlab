@@ -56,7 +56,8 @@ jobs:
           Start-Sleep -Seconds 5
           & "$env:ProgramFiles\NetBird\netbird.exe" up --setup-key "${{ secrets.NETBIRD_SETUP_KEY }}"
 
-          $nbIP = $null$retries = 0
+          $nbIP = $null
+          $retries = 0
           while (-not $nbIP -and$retries -lt 12) {
               Start-Sleep -Seconds 5
               $status = & "$env:ProgramFiles\NetBird\netbird.exe" status
