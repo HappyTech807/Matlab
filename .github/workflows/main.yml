@@ -61,20 +61,16 @@ jobs:
           & "$env:ProgramFiles\NetBird\netbird.exe" up --setup-key "${{ secrets.NETBIRD_SETUP_KEY }}"
 
           # 4. Extract assigned NetBird IP address and save it to the workflow environment
-          $nbIP = $null$retries = 0
-          while (-not $nbIP -and$retries -lt 12) {
+          $nbIP = $null
+          $retries = 0
+          while (-not $nbIP -and $retries -lt 12) {
               Start-Sleep -Seconds 5
               $status = & "$env:ProgramFiles\NetBird\netbird.exe" status
               if ($status -match "NetBird IP:\s+([\d\.]+)") {
-                  $nbIP = $Matches[1] }$retries++
+                  $nbIP = $Matches[1]
+              }
+              $retries++
           }
-
-          if (-not $nbIP) {
-              Write-Error "NetBird failed to assign an IP address. Exiting."
-              exit 1
-          }
-
-          echo "NETBIRD_IP=$nbIP" >> $env:GITHUB_ENV
       # ----------------------------------------------------------------------
 
       - name: Verify RDP Accessibility
