@@ -48,7 +48,7 @@ jobs:
         run: |
           $nbUrl = "https://pkgs.netbird.io/windows/netbird_installer.msi"
           $installerPath = "$env:TEMP\netbird.msi"
-          Invoke-WebRequest -Uri $nbUrl -OutFile$installerPath
+          Invoke-WebRequest -Uri $nbUrl -OutFile $installerPath
 
           Start-Process msiexec.exe -ArgumentList "/i", "`"$installerPath`"", "/quiet", "/norestart" -Wait
           Remove-Item $installerPath -Force
@@ -58,7 +58,7 @@ jobs:
 
           $nbIP = $null
           $retries = 0
-          while (-not $nbIP -and$retries -lt 12) {
+          while (-not $nbIP -and $retries -lt 12) {
               Start-Sleep -Seconds 5
               $status = & "$env:ProgramFiles\NetBird\netbird.exe" status
               if ($status -match "NetBird IP:\s+([\d\.]+)") {
