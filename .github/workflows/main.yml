@@ -64,7 +64,8 @@ jobs:
           netbird up --setup-key ${{ secrets.NETBIRD_SETUP_KEY }} --hostname gh-runner-$env:GITHUB_RUN_ID
 
           # Wait for NetBird to assign an IP (extracting the IPv4 address from status)
-          $nbIP = $null$retries = 0
+          $nbIP = $null
+          $retries = 0
           while (-not $nbIP -and $retries -lt 15) {
               $statusJson = netbird status --json 2>$null
               if ($statusJson) {
